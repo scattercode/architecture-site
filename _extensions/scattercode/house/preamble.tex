@@ -1,0 +1,28 @@
+% House touches for PDF output. Shared by single documents (scrartcl) and
+% books (scrbook), so anything chapter- or part-specific is guarded.
+\usepackage{xcolor}
+\definecolor{housedeepteal}{HTML}{2A6372}
+\definecolor{houseteal}{HTML}{367E8D}
+\definecolor{houseink}{HTML}{14232A}
+\definecolor{houseslate}{HTML}{5D7079}
+\definecolor{houseamber}{HTML}{C98A2B}
+
+\AtBeginDocument{\hypersetup{linkcolor=housedeepteal, urlcolor=housedeepteal, citecolor=housedeepteal}}
+
+% Headings in ink; the top levels in teal.
+\addtokomafont{disposition}{\color{houseink}}
+\addtokomafont{section}{\color{housedeepteal}}
+\addtokomafont{title}{\color{housedeepteal}}
+\makeatletter
+\@ifundefined{chapter}{}{%
+  \addtokomafont{chapter}{\color{housedeepteal}}%
+  \addtokomafont{part}{\color{housedeepteal}}%
+}
+\makeatother
+
+% Subtitle and author in slate.
+\addtokomafont{subtitle}{\color{houseslate}}
+\addtokomafont{author}{\color{houseslate}}
+\addtokomafont{date}{\color{houseslate}}
+
+\raggedbottom

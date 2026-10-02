@@ -1,0 +1,30 @@
+---
+title: "TITLE"
+subtitle: "One line saying what this analysis decides or recommends"
+description: "A sentence for the analyses listing page."
+author: "AUTHOR"
+date: DATE
+status: draft
+abstract: |
+  Three or four sentences a busy reader can stop after: the question, the
+  answer, and what it would take.
+---
+
+# 1. Context {#sec-context}
+
+What prompted this, and what the reader needs to know before the options
+make sense.
+
+# 2. Options considered {#sec-options}
+
+## 2.1 Option A {#sec-options-a}
+
+## 2.2 Option B {#sec-options-b}
+
+# 3. Recommendation {#sec-recommendation}
+
+What is recommended, why, and what was rejected (see @sec-options).
+
+# 4. Consequences {#sec-consequences}
+
+What it costs, what it changes for other people, and what to watch.

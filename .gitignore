@@ -1,0 +1,9 @@
+public/
+.quarto/
+*_files/
+*.quarto_ipynb
+.tinytex/
+__pycache__/
+.DS_Store
+# Keep _extensions/ and _freeze/ committed: the extension is vendored by
+# `quarto add`, and the freeze cache lets CI skip re-running Python cells.

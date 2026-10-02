@@ -1,0 +1,19 @@
+---
+title: "The architecture"
+subtitle: "How the platform is put together"
+---
+
+This section describes the platform as a whole. Chapters are listed in the
+sidebar and are numbered in order. The complete document is also rendered as
+one [PDF](complete.pdf) and one [Word document](complete.docx) for people who
+would rather read it offline.
+
+## How this section is maintained
+
+Hand-written chapters are plain Markdown files named `NN-slug.md`. Generated
+chapters are `.qmd` files with Python cells that read the environment
+descriptions in `data/` and write Markdown; see the
+[environments chapter](02-environments.qmd) for the pattern. Add a new chapter
+by creating the file with the next number — the sidebar and the combined
+document pick it up (the combined document lists chapters explicitly in
+`complete.qmd`, so add it there too).

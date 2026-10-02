@@ -1,0 +1,8 @@
+# Applies to every analysis. Each one is a web page plus a standalone PDF and
+# Word document, and the page shows "Other Formats" links to them.
+format:
+  house-html: default
+  house-pdf: default
+  house-docx: default
+date-format: "D MMMM YYYY"
+format-links: true

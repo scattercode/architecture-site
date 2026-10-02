@@ -1,0 +1,25 @@
+/*-- scss:defaults --*/
+// House palette (matches the SVG diagram style and the PDF preamble).
+$house-teal:      #367E8D;
+$house-deep-teal: #2A6372;
+$house-ink:       #14232A;
+$house-slate:     #5D7079;
+$house-amber:     #C98A2B;
+$house-cream:     #FAFAF7;
+
+$primary:    $house-deep-teal;
+$link-color: $house-deep-teal;
+$body-color: $house-ink;
+$font-family-sans-serif: -apple-system, "Helvetica Neue", Arial, sans-serif;
+$headings-font-family: Georgia, "Times New Roman", serif;
+$navbar-bg: $house-deep-teal;
+$navbar-fg: #ffffff;
+$code-block-bg: $house-cream;
+
+/*-- scss:rules --*/
+h1, h2, h3 { color: $house-deep-teal; }
+h4, h5, h6 { color: $house-ink; }
+.subtitle, .quarto-title-meta { color: $house-slate; }
+.callout-warning, .callout-caution { border-left-color: $house-amber; }
+.sidebar nav[role="doc-toc"] a.active { color: $house-deep-teal; }
+figure img { background: $house-cream; }

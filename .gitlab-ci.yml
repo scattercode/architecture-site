@@ -1,0 +1,52 @@
+# Builds the website, every analysis PDF and the combined architecture PDF,
+# and publishes public/ to GitLab Pages on the default branch.
+#
+# The image is the official Quarto image plus TeX and librsvg. For a faster
+# pipeline, build ci/Dockerfile once, push it to the project registry and set
+# IMAGE to it — then the apt/tinytex steps in before_script can go.
+
+variables:
+  QUARTO_VERSION: "1.7.32"
+  IMAGE: "ghcr.io/quarto-dev/quarto:${QUARTO_VERSION}"
+
+stages: [check, build, deploy]
+
+default:
+  image: $IMAGE
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq --no-install-recommends librsvg2-bin python3-pip > /dev/null
+    - pip install --quiet --break-system-packages -r requirements.txt
+    - quarto install tinytex --no-prompt --update-path
+  cache:
+    key: tinytex
+    paths: [.tinytex/]
+
+check-refs:
+  stage: check
+  before_script: []
+  image: python:3.12-slim
+  script:
+    - python3 scripts/check-refs.py
+
+render:
+  stage: build
+  script:
+    - quarto render
+  artifacts:
+    paths: [public]
+    expire_in: 1 week
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+pages:
+  stage: deploy
+  before_script: []
+  image: alpine:latest
+  script:
+    - echo "Publishing public/ to GitLab Pages"
+  artifacts:
+    paths: [public]
+  needs: [render]
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

@@ -1,0 +1,19 @@
+---
+title: "Platform Architecture"
+subtitle: "Architecture documentation and analyses"
+toc: false
+---
+
+This site holds two kinds of writing, both kept as plain Markdown so they can
+be read by people, published to Confluence and fed to language models without
+conversion.
+
+**[The architecture](architecture/index.qmd)** is the top-level description of
+the platform. Some of its chapters are written by hand; others are generated
+from the environment descriptions in `data/`, so they stay true as the
+environments change. The whole thing is also available as a single
+[PDF](architecture/complete.pdf).
+
+**[Analyses](analyses.qmd)** are self-contained pieces of research or
+proposed changes. Each is a folder, renders to a page here, and also to a PDF
+and a Word document you can share on their own.

@@ -1,0 +1,12 @@
+{
+  "name": "prd",
+  "region": "uksouth",
+  "subscription": "sub-platform-prd",
+  "description": "Production. Serves the business; changes arrive only through the shared CI/CD pipeline.",
+  "storage": ["stplatformprdraw", "stplatformprdcurated", "stplatformprdbackup"],
+  "workspaces": [
+    {"name": "sandbox", "catalog": "prd_sandbox", "compute": "serverless", "purpose": "Research on production data"},
+    {"name": "staging", "catalog": "prd_staging", "compute": "serverless", "purpose": "Final checks before live"},
+    {"name": "live", "catalog": "prd_live", "compute": "classic + serverless", "purpose": "Serving the business"}
+  ]
+}

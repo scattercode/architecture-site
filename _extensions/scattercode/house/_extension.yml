@@ -1,0 +1,40 @@
+title: House
+author: Stephen Masters
+version: 0.1.0
+quarto-required: ">=1.5.0"
+contributes:
+  formats:
+    # Settings shared by every house format.
+    common:
+      toc: true
+      number-sections: true
+      filters:
+        - strip-numbers.lua
+        - part-refs.lua
+        - unwrap-external-links.lua
+        - crossref-pages.lua
+    # A single document (an analysis, a proposal, a research note).
+    # A book project overrides `documentclass: scrbook` in its _quarto.yml.
+    pdf:
+      pdf-engine: xelatex
+      documentclass: scrartcl
+      papersize: a4
+      geometry:
+        - margin=2.6cm
+      toc-depth: 2
+      colorlinks: true
+      include-in-header: preamble.tex
+      fig-pos: "H"
+      default-image-extension: pdf
+    html:
+      theme:
+        - cosmo
+        - house.scss
+      toc-depth: 3
+      toc-location: right
+      code-copy: true
+      default-image-extension: svg
+    docx:
+      reference-doc: reference.docx
+      toc-depth: 2
+      default-image-extension: png

@@ -1,0 +1,5 @@
+# Python packages for the generated chapters (executed Quarto cells).
+jupyter-client
+ipykernel
+nbformat
+nbclient

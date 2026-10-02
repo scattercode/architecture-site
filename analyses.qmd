@@ -1,0 +1,17 @@
+---
+title: "Analyses"
+subtitle: "Research notes and proposed changes"
+listing:
+  contents: "analysis/*/index.qmd"
+  type: table
+  sort: "date desc"
+  fields: [date, title, description]
+  sort-ui: false
+  filter-ui: false
+---
+
+Each analysis is a self-contained document on one topic — a piece of
+research, a design option appraisal, or a proposed change. Every one is also
+available as a PDF and a Word document from the links on its page.
+
+To start a new one: `make new SLUG=my-topic`.

@@ -1,0 +1,12 @@
+{
+  "name": "dev",
+  "region": "uksouth",
+  "subscription": "sub-platform-dev",
+  "description": "Where pipelines are built and tried out. Nothing here is relied on by anyone outside the platform team.",
+  "storage": ["stplatformdevraw", "stplatformdevcurated"],
+  "workspaces": [
+    {"name": "sandbox", "catalog": "dev_sandbox", "compute": "serverless", "purpose": "Individual experiments"},
+    {"name": "staging", "catalog": "dev_staging", "compute": "serverless", "purpose": "Shared integration of bundles"},
+    {"name": "live", "catalog": "dev_live", "compute": "classic + serverless", "purpose": "Rehearsal of the live shape"}
+  ]
+}

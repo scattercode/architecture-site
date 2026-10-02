@@ -1,0 +1,50 @@
+# 2. Environments {#sec-environments}
+
+*A generated chapter. Everything below the first paragraph is produced from
+the JSON extracts in `data/environments/` when the site is rendered.*
+
+The platform has one environment per stage of the release path. Each is its
+own Azure subscription and network, and each contains three workspaces. The
+tables and lists in this chapter are generated from the environment
+descriptions exported by the infrastructure pipeline, so they describe the
+environments as they are, not as they were when someone last edited this
+file.
+
+```{python}
+#| output: asis
+from scripts.platformdata import load_environments, md_table
+
+envs = load_environments()
+
+print("## 2.1 Environments at a glance {#sec-environments-glance}\n")
+print(md_table(
+    ["Environment", "Region", "Subscription", "Workspaces"],
+    [[e.name, e.region, f"`{e.subscription}`", ", ".join(w.name for w in e.workspaces)]
+     for e in envs],
+    caption="Environments and their workspaces",
+    label="tbl-environments",
+))
+```
+
+```{python}
+#| output: asis
+for e in envs:
+    print(f"\n## 2.{envs.index(e) + 2} The {e.name} environment {{#sec-environments-{e.name}}}\n")
+    print(f"{e.description}\n")
+    print(md_table(
+        ["Workspace", "Catalog", "Compute", "Purpose"],
+        [[w.name, f"`{w.catalog}`", w.compute, w.purpose] for w in e.workspaces],
+    ))
+    if e.storage:
+        print("\nStorage accounts: " + ", ".join(f"`{s}`" for s in e.storage) + ".")
+```
+
+```{python}
+#| output: asis
+# A diagram generated from the data: an SVG in the house style, written to
+# assets/ (with PDF and PNG copies for the other formats) so it can also be
+# reused elsewhere — a wiki page, a Miro board.
+from scripts.platformdata import environments_svg, write_diagram
+image = write_diagram("architecture/assets/environments", environments_svg(envs))
+print(f"![Environments and workspaces, drawn from the same data]({image}){{#fig-environments}}")
+```

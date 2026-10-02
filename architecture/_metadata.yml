@@ -1,0 +1,5 @@
+# Applies to every file in architecture/. Chapters are web pages; the combined
+# document (complete.qmd) adds PDF and Word in its own front matter.
+author: "Platform Architecture"
+date: today
+date-format: "D MMMM YYYY"

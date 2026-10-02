@@ -1,0 +1,68 @@
+# The site manifest. One project renders the website, every analysis PDF and
+# the combined architecture PDF in a single `quarto render`.
+project:
+  type: website
+  output-dir: public            # GitLab Pages serves this directory
+  render:
+    - "*.qmd"
+    - "*.md"
+    - "!README.md"
+    - "!CLAUDE.md"
+    - "!data/"
+  # Executed Python cells are cached here; commit _freeze/ so that CI does not
+  # need to re-run them (or set `freeze: false` to always re-run).
+  execute-dir: project
+
+execute:
+  freeze: auto
+  echo: false
+  warning: false
+
+website:
+  title: "Platform Architecture"
+  description: "Architecture documentation and analyses for the data platform"
+  search: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: architecture/index.qmd
+        text: Architecture
+      - href: analyses.qmd
+        text: Analyses
+    right:
+      - icon: file-pdf
+        href: architecture/complete.pdf
+        text: Architecture PDF
+  sidebar:
+    - id: architecture
+      title: Architecture
+      style: docked
+      collapse-level: 1
+      contents:
+        - architecture/index.qmd
+        - section: Chapters
+          contents:
+            - architecture/*.md
+            - architecture/*.qmd
+    - id: analysis
+      title: Analyses
+      style: docked
+      contents:
+        - analyses.qmd
+        - section: Topics
+          contents:
+            - analysis/*/index.qmd
+  page-footer:
+    left: "Built with Quarto"
+    right: "Markdown is the source of truth: the site, PDFs and Word files are all derived."
+
+# Every page gets the house website format. Directories add PDF and Word
+# through their own _metadata.yml.
+format:
+  house-html: default
+
+# Links the unwrap filter turns into plain text in every format (Lua patterns).
+house-unwrap-links:
+  - "README%.md$"
+  - "^%.%./%.%./"

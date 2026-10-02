@@ -1,0 +1,21 @@
+---
+title: "Platform Architecture"
+subtitle: "The complete architecture document"
+format:
+  house-html:
+    toc: true
+  house-pdf: default
+  house-docx: default
+---
+
+<!--
+The whole architecture as one document, for the PDF and Word outputs. Each
+chapter is pulled in with an include shortcode, in reading order. Add new
+chapters here as well as creating the file; nothing is globbed.
+-->
+
+{{< include 01-overview.md >}}
+
+{{< include 02-environments.qmd >}}
+
+{{< include 03-glossary.md >}}

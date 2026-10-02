@@ -1,0 +1,12 @@
+{
+  "name": "ppr",
+  "region": "uksouth",
+  "subscription": "sub-platform-ppr",
+  "description": "Pre-production: a faithful copy of production used to rehearse releases and run the platform QA suite.",
+  "storage": ["stplatformpprraw", "stplatformpprcurated"],
+  "workspaces": [
+    {"name": "sandbox", "catalog": "ppr_sandbox", "compute": "serverless", "purpose": "Release candidates under test"},
+    {"name": "staging", "catalog": "ppr_staging", "compute": "serverless", "purpose": "Promotion gate before live"},
+    {"name": "live", "catalog": "ppr_live", "compute": "classic + serverless", "purpose": "Production-shaped rehearsal"}
+  ]
+}

@@ -1,0 +1,60 @@
+---
+title: "Example analysis: one document, three outputs"
+subtitle: "A worked example of an analysis folder"
+description: "Shows what an analysis looks like and how generated content can be mixed in."
+author: "Platform Architecture"
+date: 2026-10-02
+status: example
+abstract: |
+  An analysis is a folder with an `index.qmd` and whatever assets it needs.
+  It renders to a page on this site and to a PDF and a Word document that
+  can be shared on their own. This one exists to show the shape; delete it
+  once there is a real analysis beside it.
+---
+
+# 1. Context {#sec-context}
+
+Analyses used to have one PDF script each, and the scripts drifted apart.
+Now there is no script: the folder's `_metadata.yml` says every analysis
+renders to the three house formats, and the `quarto-house` extension says
+what those formats look like.
+
+# 2. What an analysis can contain {#sec-contents}
+
+Ordinary Markdown, with Quarto's additions where they help: numbered
+cross-references (this is @sec-contents, referring to itself), callouts,
+captioned tables (@tbl-outputs) and figures.
+
+| Output | Where it lands                               | Shared how                |
+|--------|----------------------------------------------|---------------------------|
+| HTML   | `public/analysis/<topic>/index.html`         | GitLab Pages, Confluence  |
+| PDF    | `public/analysis/<topic>/index.pdf`          | Attach to an email        |
+| Word   | `public/analysis/<topic>/index.docx`         | For reviewers who comment |
+
+: The three outputs of every analysis {#tbl-outputs}
+
+::: {.callout-note}
+Sections keep their manual numbers in the source so the Markdown reads
+correctly on a wiki; the build strips and renumbers them.
+:::
+
+## 2.1 Generated content in an analysis {#sec-contents-generated}
+
+An analysis can use the same data as the architecture chapters. The table
+below is produced by a Python cell reading `data/environments/`.
+
+```{python}
+#| output: asis
+from scripts.platformdata import load_environments, md_table
+envs = load_environments()
+print(md_table(["Environment", "Workspaces"],
+               [[e.name, str(len(e.workspaces))] for e in envs]))
+```
+
+# 3. Recommendation {#sec-recommendation}
+
+Keep analyses short, dated, and honest about what was rejected and why.
+
+# 4. Consequences {#sec-consequences}
+
+Nothing to do: delete this folder when a real analysis exists.
